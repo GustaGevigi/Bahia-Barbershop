@@ -10,4 +10,10 @@ const clientController = new ClientController(clientService);
 
 clientRouter.post('/', clientController.create);
 
-clientRouter.get('/', clientService.getClients);
+clientRouter.get('/', clientController.findAll);
+
+clientRouter.get('/:id', clientController.findById);
+
+clientRouter.get('/cpf/:cpf', clientController.findByCpf);
+
+export default clientRouter;

@@ -17,6 +17,8 @@ interface CreateClientDTO {
 interface GetClientsFilters {
   name?: string;
   sex?: string;
+  tel?: string;
+  email?: string;
 }
 
 export class ClientService {
@@ -63,6 +65,14 @@ export class ClientService {
       userWhere.sex = filters.sex;
     }
 
+    if (filters.tel) {
+      userWhere.tel = filters.tel;
+    }
+
+    if (filters.email) {
+      userWhere.email = filters.email;
+    }
+
     return ClientModel.findAll({
       include: [
         {
@@ -80,24 +90,6 @@ export class ClientService {
     });
   }
 
-  async getClientByName(name: string) {
-    const clients = await ClientModel.findAll({
-      include: [
-        {
-          model: UserModel,
-          as: 'user',
-          where: {
-            name: {
-              [Op.like]: `%${name}%`,
-            },
-          },
-        },
-      ],
-    });
-
-    return clients;
-  }
-
   async getClientByCpf(cpf: string) {
     return await ClientModel.findOne({
       include: [
@@ -105,48 +97,6 @@ export class ClientService {
           model: UserModel,
           as: 'user',
           where: { cpf },
-        },
-      ],
-    });
-  }
-
-  async getClientBySex(sex: string) {
-    const clients = await ClientModel.findAll({
-      include: [
-        {
-          model: UserModel,
-          as: 'user',
-          where: {
-            name: {
-              [Op.like]: `%${sex}%`,
-            },
-          },
-        },
-      ],
-    });
-
-    return clients;
-  }
-
-  async getClientByTel(tel: string) {
-    return await ClientModel.findOne({
-      where: { tel },
-      include: [
-        {
-          model: UserModel,
-          as: 'users',
-        },
-      ],
-    });
-  }
-
-  async getClientByEmail(emailPer: string) {
-    return await ClientModel.findOne({
-      where: { emailPer },
-      include: [
-        {
-          model: UserModel,
-          as: 'users',
         },
       ],
     });
