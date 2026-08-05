@@ -5,7 +5,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: bbshop_password
-      MYSQL_DATABASE: bbshop_host
+      MYSQL_DATABASE: bbshop_db
     ports:
       - '${DB_PORT}:3306'
     volumes:

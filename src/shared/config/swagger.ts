@@ -1,15 +1,6 @@
 import swaggerJSDoc from 'swagger-jsdoc';
 
 const options = {
-  components: {
-    securitySchemes: {
-      bearerAuth: {
-        type: 'http',
-        scheme: 'bearer',
-        bearerFormat: 'JWT',
-      },
-    },
-  },
   definition: {
     openapi: '3.0.0',
     info: {
@@ -22,6 +13,15 @@ const options = {
         url: 'http://localhost:3000',
       },
     ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
     tags: [
       {
         name: 'Admin',
@@ -32,8 +32,8 @@ const options = {
         description: 'Autenticação e Recuperação de Senha',
       },
     ],
-    apis: ['./src/routes/*.ts'],
   },
+  apis: ['./src/routes/*.ts'],
 };
 
 const specs = swaggerJSDoc(options);

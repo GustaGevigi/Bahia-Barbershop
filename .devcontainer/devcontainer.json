@@ -1,13 +1,12 @@
 {
-  "name": "Node.js & TypeScript",
-  "image": "mcr.microsoft.com/devcontainers/typescript-node:4-24-trixie",
+  "name": "Bahia Barbershop - Dev Container",
+  "dockerComposeFile": ["../docker-compose.yml"],
+  "service": "app",
+  "workspaceFolder": "/usr/src/app",
 
   "customizations": {
     "vscode": {
-      "extensions": [
-        "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode"
-      ],
+      "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"],
       "settings": {
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -19,8 +18,5 @@
         }
       }
     }
-  },
-
-  // Executa o npm install automaticamente após criar o container
-  "postCreateCommand": "npm install"
+  }
 }
