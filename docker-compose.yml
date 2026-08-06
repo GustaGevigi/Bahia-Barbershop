@@ -1,8 +1,9 @@
 services:
   mysql-db:
-    image: mysql:latest
+    image: mysql:8.0
     container_name: mysql_bbshop
     restart: always
+    command: --innodb-buffer-pool-size=64M
     environment:
       MYSQL_ROOT_PASSWORD: bbshop_password
       MYSQL_DATABASE: bbshop_db
@@ -22,6 +23,7 @@ services:
   app:
     build: .
     container_name: node_app
+    working_dir: /usr/src/app
     ports:
       - '${PORT}:3000'
     depends_on:
