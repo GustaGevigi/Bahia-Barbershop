@@ -46,10 +46,10 @@ export class ClientService {
         { transaction: t },
       );
 
-      (await t).commit;
+      await t.commit();
       return client;
     } catch (error) {
-      (await t).rollback;
+      await t.rollback();
       throw error;
     }
   }
